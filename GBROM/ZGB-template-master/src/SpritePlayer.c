@@ -2,21 +2,33 @@
 #include "Keys.h"
 #include "SpriteManager.h"
 
+
+const UINT8 anim_idle[] = { 1, 0 }; //The first number indicates the number of frames
+const UINT8 anim_walk[] = { 5, 0,1,2,3,4 };
+
+
 void START() {
 }
 
 void UPDATE() {
 	if (KEY_PRESSED(J_UP)) {
-		THIS->y --;
+		TranslateSprite(THIS, 0, -1);
+		SetSpriteAnim(THIS, anim_walk, 15);
 	}
 	if (KEY_PRESSED(J_DOWN)) {
-		THIS->y++;
+		TranslateSprite(THIS, 0, 1);
+		SetSpriteAnim(THIS, anim_walk, 15);
 	}
 	if (KEY_PRESSED(J_LEFT)) {
-		THIS->x--;
+		TranslateSprite(THIS, -1,0);
+		SetSpriteAnim(THIS, anim_walk, 15);
 	}
 	if (KEY_PRESSED(J_RIGHT)) {
-		THIS->x++;
+		TranslateSprite(THIS, 1,0);
+		SetSpriteAnim(THIS, anim_walk, 15);
+	}
+	if (keys == 0) {
+		SetSpriteAnim(THIS, anim_idle, 15);
 	}
 }
 
